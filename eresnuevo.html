@@ -100,7 +100,7 @@
       letter-spacing: 0.14em;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.35);
-      background: rgba(0,0,0,0.65);
+      background: rgba(0,0,0,0.75);
       color: #fff;
       cursor: pointer;
       text-decoration: none;
@@ -115,7 +115,7 @@
       box-shadow:
         0 0 24px rgba(0,0,0,1),
         0 0 26px rgba(255,255,255,0.25);
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.9);
     }
 
     .hero-button:active {
@@ -140,18 +140,24 @@
       filter: drop-shadow(0 0 18px rgba(255,255,255,0.35));
       --botScale: 1;
       animation: botFloat 3.8s ease-in-out infinite;
-    }
-
-    @keyframes botFloat {
-      0% { transform: translate(-50%, -50%) scale(var(--botScale)); }
-      50% { transform: translate(-50%, -54%) scale(calc(var(--botScale) * 1.03)); }
-      100% { transform: translate(-50%, -50%) scale(var(--botScale)); }
+      background: transparent;
     }
 
     body.state-1 .bot {
       left: 18%;
       top: 60%;
       --botScale: 0.75;
+    }
+
+    /* iOS: simular transparencia usando mezcla de capas */
+    body.ios .bot {
+      mix-blend-mode: screen;
+    }
+
+    @keyframes botFloat {
+      0% { transform: translate(-50%, -50%) scale(var(--botScale)); }
+      50% { transform: translate(-50%, -54%) scale(calc(var(--botScale) * 1.03)); }
+      100% { transform: translate(-50%, -50%) scale(var(--botScale)); }
     }
 
     .tk-bubble {
@@ -265,6 +271,42 @@
       60% { text-shadow: 1px 0 rgba(0,255,255,0.4), -1px 0 rgba(255,0,128,0.4); }
       100% { text-shadow: none; }
     }
+
+    /* Responsive: ajustar androide y textos en móviles */
+
+    @media (max-width: 900px) {
+      .page-content {
+        padding: 1.5rem 1.25rem;
+      }
+      .hero-panel {
+        max-width: 90vw;
+      }
+      .bot {
+        width: 380px;
+        max-width: 70vw;
+      }
+      body.state-1 .bot {
+        left: 50%;
+        top: 64%;
+        --botScale: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      .hero-subtitle {
+        font-size: 0.95rem;
+      }
+      .bot {
+        width: 300px;
+        max-width: 80vw;
+      }
+      body.state-1 .bot {
+        top: 66%;
+      }
+    }
   </style>
 </head>
 <body class="state-1">
@@ -282,11 +324,9 @@
   <div class="page-content">
     <div class="hero-panel">
       <h1 class="hero-title"><span>¿ERES NUEV@?</span></h1>
-
       <p class="hero-subtitle">
         T.K. puede guiarte con una introducción rápida al universo de Disturbing Stories.
       </p>
-
       <button class="hero-button" id="startGuideBtn">
         Entra aquí para ver la Guía de Inicio
       </button>
@@ -317,6 +357,16 @@
   </div>
 
   <script>
+    // Detectar iOS para aplicar mezcla especial (fondo "transparente" en el androide)
+    (function detectIOS() {
+      const ua = window.navigator.userAgent;
+      const isiOS = /iP(ad|hone|od)/.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      if (isiOS) {
+        document.body.classList.add("ios");
+      }
+    })();
+
     const bot = document.querySelector(".bot");
     const tkBubble = document.getElementById("tkBubble");
     const tkBubbleText = document.getElementById("tkBubbleText");
@@ -356,15 +406,14 @@
 
     const botPrompt = document.getElementById("botPrompt");
     const botSphere = document.getElementById("botSphere");
+    const tkPrompt = document.getElementById("tkPrompt");
+    const tkSphere = document.getElementById("tkSphere");
 
     function positionBotPrompt() {
       const rect = bot.getBoundingClientRect();
       botPrompt.style.left = rect.left + rect.width / 2 + "px";
       botPrompt.style.top = rect.top + rect.height * 0.45 + "px";
     }
-
-    const tkPrompt = document.getElementById("tkPrompt");
-    const tkSphere = document.getElementById("tkSphere");
 
     function positionTkPrompt() {
       const rect = bot.getBoundingClientRect();
