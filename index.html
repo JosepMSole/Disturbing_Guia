@@ -386,33 +386,24 @@
       border-bottom-color: rgba(255,255,255,0.8);
     }
 
+    /* NUEVO MENÚ SUPERIOR HORIZONTAL (ESFERAS REDONDAS) */
     .scroll-indicator {
       position: fixed;
-      top: 50%;
-      right: 24px;
-      transform: translateY(-50%);
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 6;
       display: flex;
+      gap: 14px;
       align-items: center;
       justify-content: center;
       pointer-events: none;
     }
 
-    .scroll-line {
-      position: relative;
-      width: 2px;
-      height: 220px;
-      background: rgba(255,255,255,0.25);
-      border-radius: 999px;
-    }
-
     .scroll-dot {
-      position: absolute;
-      left: 50%;
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      transform: translate(-50%, -50%);
       border: none;
       background: rgba(255,255,255,0.35);
       box-shadow: 0 0 0 2px rgba(0,0,0,0.5);
@@ -424,14 +415,8 @@
     .scroll-dot.active {
       background: #ffffff;
       box-shadow: 0 0 14px rgba(255,255,255,0.9);
-      transform: translate(-50%, -50%) scale(1.2);
+      transform: scale(1.25);
     }
-
-    .scroll-line .scroll-dot:nth-child(1) { top: 0%; }
-    .scroll-line .scroll-dot:nth-child(2) { top: 25%; }
-    .scroll-line .scroll-dot:nth-child(3) { top: 50%; }
-    .scroll-line .scroll-dot:nth-child(4) { top: 75%; }
-    .scroll-line .scroll-dot:nth-child(5) { top: 100%; }
 
     .bot-prompt {
       position: fixed;
@@ -558,19 +543,28 @@
       .content p {
         max-width: 100%;
       }
+
       .bot {
-        width: 340px;
-        max-width: 80vw;
+        width: 260px;
+        max-width: 65vw;
       }
+
       body.state-1 .bot,
       body.state-2 .bot,
       body.state-3 .bot,
       body.state-4 .bot,
       body.state-5 .bot {
         left: 50%;
-        top: 58%;
+        top: 78%;
         --botScale: 1;
       }
+
+      .bot-sphere,
+      .tk-sphere {
+        width: 32px;
+        height: 32px;
+      }
+
       .section-icon {
         width: min(65vw, 240px);
         height: auto;
@@ -582,8 +576,15 @@
         max-width: 90vw;
         font-size: 0.85rem;
       }
+
       .scroll-indicator {
-        right: 14px;
+        top: 10px;
+        gap: 10px;
+      }
+
+      .scroll-dot {
+        width: 14px;
+        height: 14px;
       }
     }
 
@@ -592,10 +593,7 @@
         padding: 1rem 0;
       }
       .bot {
-        width: 280px;
-      }
-      .scroll-indicator {
-        right: 10px;
+        width: 230px;
       }
     }
 
@@ -725,14 +723,13 @@
     <div class="tk-bubble-text" id="tkBubbleText"></div>
   </div>
 
+  <!-- NUEVO MENÚ SUPERIOR HORIZONTAL -->
   <div class="scroll-indicator">
-    <div class="scroll-line">
-      <button class="scroll-dot" data-index="1" type="button"></button>
-      <button class="scroll-dot" data-index="2" type="button"></button>
-      <button class="scroll-dot" data-index="3" type="button"></button>
-      <button class="scroll-dot" data-index="4" type="button"></button>
-      <button class="scroll-dot" data-index="5" type="button"></button>
-    </div>
+    <button class="scroll-dot" data-index="1" type="button"></button>
+    <button class="scroll-dot" data-index="2" type="button"></button>
+    <button class="scroll-dot" data-index="3" type="button"></button>
+    <button class="scroll-dot" data-index="4" type="button"></button>
+    <button class="scroll-dot" data-index="5" type="button"></button>
   </div>
 
   <div class="bot-prompt" id="botPrompt">
@@ -820,14 +817,19 @@
       if (!botPrompt || !bot) return;
       const rect = bot.getBoundingClientRect();
       const state = getCurrentStateIndex();
+      const isMobile = window.innerWidth <= 768;
 
       const x = rect.left + rect.width / 2;
       let y;
 
-      if (state === 3) {
-        y = rect.top + rect.height * 0.15;
+      if (isMobile) {
+        y = rect.top + rect.height * 0.82;
       } else {
-        y = rect.top + rect.height * 0.45;
+        if (state === 3) {
+          y = rect.top + rect.height * 0.15;
+        } else {
+          y = rect.top + rect.height * 0.45;
+        }
       }
 
       botPrompt.style.left = x + "px";
@@ -925,8 +927,16 @@
     function positionTkPrompt() {
       if (!tkPrompt || !tkPromptVisible || !bot) return;
       const rect = bot.getBoundingClientRect();
+      const isMobile = window.innerWidth <= 768;
       const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height * 0.45;
+      let y;
+
+      if (isMobile) {
+        y = rect.top + rect.height * 0.82;
+      } else {
+        y = rect.top + rect.height * 0.45;
+      }
+
       tkPrompt.style.left = x + "px";
       tkPrompt.style.top  = y + "px";
     }
@@ -1050,6 +1060,19 @@
     window.addEventListener("click", startBgMusic);
     window.addEventListener("keydown", startBgMusic);
 
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function preventUserScroll(e) {
+      if (isMobile()) {
+        e.preventDefault();
+      }
+    }
+
+    window.addEventListener("touchmove", preventUserScroll, { passive: false });
+    window.addEventListener("wheel", preventUserScroll, { passive: false });
+
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -1060,6 +1083,10 @@
               body.classList.remove("state-" + i);
             }
             body.classList.add("state-" + idx);
+
+            if (idx > 1) {
+              hideTkPrompt();
+            }
 
             refreshUiPositions();
             setActiveDot(idx);
