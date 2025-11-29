@@ -17,7 +17,6 @@
       overflow-x: hidden;
     }
 
-    /* VIDEO DE FONDO */
     .bg-video {
       position: fixed;
       top: 0;
@@ -29,7 +28,6 @@
       background: #000;
     }
 
-    /* Capa oscura por encima del vídeo */
     .bg-overlay {
       position: fixed;
       top: 0;
@@ -40,7 +38,6 @@
       z-index: 1;
     }
 
-    /* Overlay FX por encima de casi todo */
     .fx-overlay {
       position: fixed;
       top: 0;
@@ -54,7 +51,6 @@
       mix-blend-mode: screen;
     }
 
-    /* Contenido por encima de BG + overlay, pero en el mismo contexto que el bot */
     .page-content {
       position: relative;
       z-index: 2;
@@ -77,16 +73,14 @@
       position: relative;
       width: 100%;
       max-width: 780px;
-      text-align: left;
+      text-align: center;
       z-index: 3;
-      padding: 1.5rem 2rem;
-      background: rgba(10, 10, 20, 0.65);
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow:
-        0 14px 40px rgba(0,0,0,0.7),
-        0 0 40px rgba(0,0,0,0.7);
-      backdrop-filter: blur(6px);
+      padding: 1.5rem 0;
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      backdrop-filter: none;
       margin: 0 auto;
     }
 
@@ -102,7 +96,7 @@
       opacity: 0.9;
       line-height: 1.7;
       max-width: 620px;
-      margin: 0.4rem 0 0;
+      margin: 0.4rem auto 0;
       min-height: 4em;
       letter-spacing: 0.01em;
     }
@@ -119,10 +113,9 @@
       50.01%, 100% { opacity: 0; }
     }
 
-    /* LOGO PRINCIPAL (posición 1) */
     .logo-main {
       width: 100%;
-      max-width: 420px;
+      max-width: 840px;
       display: block;
       margin: 0 auto 1.2rem auto;
       opacity: 0;
@@ -141,7 +134,6 @@
         iconFloat 3.4s ease-in-out 0.6s infinite;
     }
 
-    /* BOOKZ (posición 2) – 3x más grande */
     .bookz-link {
       display: block;
       width: 100%;
@@ -171,7 +163,6 @@
         iconFloat 3.8s ease-in-out 0.6s infinite;
     }
 
-    /* ANDROIDE + escala dinámica + clicable */
     .bot {
       position: fixed;
       width: 600px;
@@ -231,7 +222,6 @@
       --botScale: 1;
     }
 
-    /* BURBUJA DE DIÁLOGO T.K. */
     .tk-bubble {
       position: fixed;
       left: 50%;
@@ -274,7 +264,6 @@
       min-height: 2.2em;
     }
 
-    /* ICONOS – encima del androide */
     .section-icon {
       width: 320px;
       height: 320px;
@@ -303,7 +292,6 @@
         iconFloat 3.8s ease-in-out 0.6s infinite;
     }
 
-    /* Aparición sci-fi */
     @keyframes iconAppear {
       0% {
         transform: scale(0.2) translateY(60px) skewX(-8deg);
@@ -331,7 +319,6 @@
       100% { transform: translate(0, 0) scale(1); }
     }
 
-    /* Glitch títulos (loop cada 2s) */
     .title-glitch {
       animation: titleGlitch 2s steps(2, end) infinite;
     }
@@ -379,70 +366,6 @@
       align-self: center;
     }
 
-    /* --------- FLECHA "CLICA EN T.K." --------- */
-    .tk-arrow-hint {
-      position: fixed;
-      z-index: 6;
-      pointer-events: none;
-      opacity: 1;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s ease-out;
-    }
-
-    .tk-arrow-hint.hidden {
-      opacity: 0;
-      display: none;
-    }
-
-    .tk-arrow-inner {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      animation: arrowFloat 1.4s ease-in-out infinite;
-      text-shadow: 0 0 8px rgba(0,0,0,0.8);
-    }
-
-    .tk-arrow-text {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      background: rgba(10,10,20,0.9);
-      padding: 0.4rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.5);
-      box-shadow:
-        0 0 10px rgba(0,0,0,0.8),
-        0 0 16px rgba(0,255,200,0.3);
-    }
-
-    /* Flecha clásica: línea + punta, apuntando por defecto a la derecha */
-    .tk-arrow-icon {
-      position: relative;
-      width: 42px;
-      height: 4px;
-      background: #ffffff;
-      border-radius: 2px;
-      transform-origin: left center;
-    }
-
-    .tk-arrow-icon::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      border-top: 7px solid transparent;
-      border-bottom: 7px solid transparent;
-      border-left: 11px solid #ffffff;
-    }
-
-    @keyframes arrowFloat {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-8px); }
-      100% { transform: translateY(0); }
-    }
-
-    /* ---------- FOOTER ---------- */
     .footer {
       text-align: center;
       font-size: 0.75rem;
@@ -463,7 +386,154 @@
       border-bottom-color: rgba(255,255,255,0.8);
     }
 
-    /* ---------- RESPONSIVE ---------- */
+    .scroll-indicator {
+      position: fixed;
+      top: 50%;
+      right: 24px;
+      transform: translateY(-50%);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .scroll-line {
+      position: relative;
+      width: 2px;
+      height: 220px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 999px;
+    }
+
+    .scroll-dot {
+      position: absolute;
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      border: none;
+      background: rgba(255,255,255,0.35);
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.5);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .scroll-dot.active {
+      background: #ffffff;
+      box-shadow: 0 0 14px rgba(255,255,255,0.9);
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    .scroll-line .scroll-dot:nth-child(1) { top: 0%; }
+    .scroll-line .scroll-dot:nth-child(2) { top: 25%; }
+    .scroll-line .scroll-dot:nth-child(3) { top: 50%; }
+    .scroll-line .scroll-dot:nth-child(4) { top: 75%; }
+    .scroll-line .scroll-dot:nth-child(5) { top: 100%; }
+
+    .bot-prompt {
+      position: fixed;
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.25s ease-out;
+    }
+
+    .bot-prompt.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .bot-sphere {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, #0ff 50%, #00b3ff 80%, #0066ff 100%);
+      box-shadow:
+        0 0 16px rgba(0,255,255,0.9),
+        0 0 28px rgba(0, 0, 0, 0.9);
+      cursor: pointer;
+    }
+
+    .bot-sphere:hover {
+      transform: scale(1.08);
+      box-shadow:
+        0 0 20px rgba(0,255,255,1),
+        0 0 32px rgba(0, 0, 0, 0.9);
+    }
+
+    .bot-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(8,10,24,0.9);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow:
+        0 0 10px rgba(0,0,0,0.9),
+        0 0 12px rgba(0,255,255,0.4);
+      white-space: nowrap;
+    }
+
+    .tk-prompt {
+      position: fixed;
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.25s ease-out;
+    }
+
+    .tk-prompt.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .tk-sphere {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, #0ff 50%, #00b3ff 80%, #0066ff 100%);
+      box-shadow:
+        0 0 16px rgba(0,255,255,0.9),
+        0 0 28px rgba(0, 0, 0, 0.9);
+      cursor: pointer;
+    }
+
+    .tk-sphere:hover {
+      transform: scale(1.08);
+      box-shadow:
+        0 0 20px rgba(0,255,255,1),
+        0 0 32px rgba(0, 0, 0, 0.9);
+    }
+
+    .tk-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(8,10,24,0.9);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow:
+        0 0 10px rgba(0,0,0,0.9),
+        0 0 12px rgba(0,255,255,0.4);
+      white-space: nowrap;
+    }
 
     @media (max-width: 1024px) {
       .bot {
@@ -482,7 +552,7 @@
         gap: 1.6rem;
       }
       .content {
-        padding: 1.25rem 1.4rem;
+        padding: 1.25rem 0;
         max-width: 94vw;
       }
       .content p {
@@ -512,14 +582,20 @@
         max-width: 90vw;
         font-size: 0.85rem;
       }
+      .scroll-indicator {
+        right: 14px;
+      }
     }
 
     @media (max-width: 480px) {
       .content {
-        padding: 1rem 1.1rem;
+        padding: 1rem 0;
       }
       .bot {
         width: 280px;
+      }
+      .scroll-indicator {
+        right: 10px;
       }
     }
 
@@ -527,26 +603,20 @@
 </head>
 <body class="state-1">
 
-  <!-- VIDEO DE FONDO -->
   <video class="bg-video" autoplay muted loop playsinline preload="auto">
     <source src="ASSETS/BG_WEBGUIA_v1_LQ.mp4" type="video/mp4">
   </video>
 
-  <!-- OSCURECIDO DEL BG -->
   <div class="bg-overlay"></div>
 
-  <!-- OVERLAY FX -->
   <video class="fx-overlay" autoplay muted loop playsinline>
     <source src="ASSETS/OVERLAY.webm" type="video/webm">
   </video>
 
-  <!-- AUDIO DE FONDO -->
   <audio id="bgMusic" src="ASSETS/BG_MUSIC.mp3" preload="auto" loop></audio>
 
-  <!-- CONTENIDO + ANDROIDE DENTRO DEL CONTEXTO -->
   <div class="page-content">
 
-    <!-- PANTALLA 1 con LOGO -->
     <section class="section">
       <div class="content">
         <img
@@ -561,7 +631,6 @@
       </div>
     </section>
 
-    <!-- PANTALLA 2 -->
     <section class="section">
       <div class="content">
         <h1>300 RELATOS, 20 LIBROS</h1>
@@ -590,7 +659,6 @@
       </a>
     </section>
 
-    <!-- PANTALLA 3 -->
     <section class="section">
       <div class="content">
         <h1>¡LEED, MALDIT@S!</h1>
@@ -608,7 +676,6 @@
       </a>
     </section>
 
-    <!-- PANTALLA 4 -->
     <section class="section">
       <div class="content">
         <h1>LAS STORIES COBRAN VIDA</h1>
@@ -626,7 +693,6 @@
       </a>
     </section>
 
-    <!-- PANTALLA 5 -->
     <section class="section">
       <div class="content">
         <h1>AQUÍ COMIENZA TU VIAJE</h1>
@@ -644,12 +710,10 @@
       </a>
     </section>
 
-    <!-- ANDROIDE VOLADOR -->
     <video class="bot" autoplay muted loop playsinline>
       <source src="ASSETS/TK__Loop1.webm" type="video/webm">
     </video>
 
-    <!-- FOOTER -->
     <div class="footer">
       © Todos los derechos reservados.
       <a href="https://www.disturbingstories.com" target="_top">DISTURBINGSTORIES:COM</a>
@@ -657,24 +721,34 @@
 
   </div>
 
-  <!-- BURBUJA DE DIÁLOGO T.K. -->
   <div class="tk-bubble" id="tkBubble">
     <div class="tk-bubble-text" id="tkBubbleText"></div>
   </div>
 
-  <!-- FLECHA / HINT "CLICA EN T.K." -->
-  <div class="tk-arrow-hint" id="tkArrowHint">
-    <div class="tk-arrow-inner">
-      <div class="tk-arrow-icon"></div>
-      <span class="tk-arrow-text">CLICA EN T.K.</span>
+  <div class="scroll-indicator">
+    <div class="scroll-line">
+      <button class="scroll-dot" data-index="1" type="button"></button>
+      <button class="scroll-dot" data-index="2" type="button"></button>
+      <button class="scroll-dot" data-index="3" type="button"></button>
+      <button class="scroll-dot" data-index="4" type="button"></button>
+      <button class="scroll-dot" data-index="5" type="button"></button>
     </div>
+  </div>
+
+  <div class="bot-prompt" id="botPrompt">
+    <div class="bot-sphere" id="botSphere"></div>
+    <div class="bot-label">Habla</div>
+  </div>
+
+  <div class="tk-prompt visible" id="tkPrompt">
+    <div class="tk-sphere" id="tkSphere"></div>
+    <div class="tk-label">Habla</div>
   </div>
 
   <script>
     const sections = document.querySelectorAll(".section");
     const body = document.body;
 
-    // Preparar textos para efecto escritura (párrafos)
     const paragraphs = document.querySelectorAll(".content p");
     paragraphs.forEach(p => {
       const full = p.textContent.trim();
@@ -705,9 +779,96 @@
       step();
     }
 
-    // --------- DIÁLOGOS T.K. + AUDIO ---------
+    const scrollDots = document.querySelectorAll(".scroll-dot");
+
+    function setActiveDot(idx) {
+      scrollDots.forEach(dot => {
+        const dotIndex = parseInt(dot.dataset.index, 10);
+        dot.classList.toggle("active", dotIndex === idx);
+      });
+    }
+
+    scrollDots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const idx = parseInt(dot.dataset.index, 10);
+        const target = sections[idx - 1];
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
+
+    setActiveDot(1);
 
     const bot = document.querySelector(".bot");
+    const botPrompt = document.getElementById("botPrompt");
+    const botSphere = document.getElementById("botSphere");
+    const sectionSpoken = { 2: false, 3: false, 4: false, 5: false };
+
+    function getCurrentStateIndex() {
+      for (let i = 1; i <= 5; i++) {
+        if (body.classList.contains("state-" + i)) {
+          return i;
+        }
+      }
+      return 1;
+    }
+
+    let botPromptTracking = false;
+
+    function positionBotPrompt() {
+      if (!botPrompt || !bot) return;
+      const rect = bot.getBoundingClientRect();
+      const state = getCurrentStateIndex();
+
+      const x = rect.left + rect.width / 2;
+      let y;
+
+      if (state === 3) {
+        y = rect.top + rect.height * 0.15;
+      } else {
+        y = rect.top + rect.height * 0.45;
+      }
+
+      botPrompt.style.left = x + "px";
+      botPrompt.style.top  = y + "px";
+    }
+
+    function startBotPromptTracking() {
+      if (botPromptTracking) return;
+      botPromptTracking = true;
+
+      function track() {
+        if (!botPromptTracking) return;
+        positionBotPrompt();
+        requestAnimationFrame(track);
+      }
+
+      requestAnimationFrame(track);
+    }
+
+    function stopBotPromptTracking() {
+      botPromptTracking = false;
+    }
+
+    function hideBotPrompt() {
+      if (botPrompt) {
+        botPrompt.classList.remove("visible");
+      }
+      stopBotPromptTracking();
+    }
+
+    function updateBotPrompt(idx) {
+      if (!botPrompt) return;
+      if (idx >= 2 && idx <= 5 && !sectionSpoken[idx]) {
+        botPrompt.classList.add("visible");
+        positionBotPrompt();
+        startBotPromptTracking();
+      } else {
+        hideBotPrompt();
+      }
+    }
+
     const tkBubble = document.getElementById("tkBubble");
     const tkBubbleText = document.getElementById("tkBubbleText");
     const tkAudio = new Audio();
@@ -756,74 +917,67 @@
       step();
     }
 
-    // --------- FLECHA "CLICA EN T.K." ---------
-    const tkArrowHint = document.getElementById("tkArrowHint");
-    const tkArrowIcon = document.querySelector(".tk-arrow-icon");
-    let arrowVisible = true;
+    const tkPrompt = document.getElementById("tkPrompt");
+    const tkSphere = document.getElementById("tkSphere");
+    let tkPromptVisible = true;
+    let tkPromptTracking = false;
 
-    function positionArrowAboveFirstBox() {
-      if (!arrowVisible) return;
-      const firstContent = document.querySelector(".section .content");
-      if (!firstContent || !tkArrowHint) return;
-
-      const rect = firstContent.getBoundingClientRect();
-      const arrowX = rect.left + rect.width / 2;
-      const arrowY = rect.top - 40; // un poco por encima de la caja
-
-      tkArrowHint.style.left = arrowX + "px";
-      tkArrowHint.style.top  = arrowY + "px";
-
-      updateArrowDirection();
+    function positionTkPrompt() {
+      if (!tkPrompt || !tkPromptVisible || !bot) return;
+      const rect = bot.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height * 0.45;
+      tkPrompt.style.left = x + "px";
+      tkPrompt.style.top  = y + "px";
     }
 
-    function updateArrowDirection() {
-      if (!arrowVisible) return;
-      if (!tkArrowHint || !tkArrowIcon || !bot) return;
+    function startTkPromptTracking() {
+      if (tkPromptTracking) return;
+      tkPromptTracking = true;
 
-      const arrowRect = tkArrowHint.getBoundingClientRect();
-      const arrowCx = arrowRect.left + arrowRect.width / 2;
-      const arrowCy = arrowRect.top + arrowRect.height / 2;
+      function track() {
+        if (!tkPromptTracking) return;
+        if (tkPromptVisible) positionTkPrompt();
+        requestAnimationFrame(track);
+      }
 
-      const botRect = bot.getBoundingClientRect();
-      const botCx = botRect.left + botRect.width / 2;
-      const botCy = botRect.top + botRect.height / 2;
-
-      const dx = botCx - arrowCx;
-      const dy = botCy - arrowCy;
-
-      const angleRad = Math.atan2(dy, dx);
-      const angleDeg = angleRad * (180 / Math.PI);
-
-      // Base de la flecha apunta a la derecha (0º), así que rotamos directamente a angleDeg
-      tkArrowIcon.style.transform = `rotate(${angleDeg}deg)`;
+      requestAnimationFrame(track);
     }
 
-    window.addEventListener("load", positionArrowAboveFirstBox);
-    window.addEventListener("resize", positionArrowAboveFirstBox);
-    window.addEventListener("scroll", positionArrowAboveFirstBox);
+    function stopTkPromptTracking() {
+      tkPromptTracking = false;
+    }
 
-    bot.addEventListener("click", () => {
-      // al primer click en T.K. escondemos la flecha para siempre
-      if (arrowVisible) {
-        arrowVisible = false;
-        if (tkArrowHint) {
-          tkArrowHint.classList.add("hidden");
-        }
+    function hideTkPrompt() {
+      if (!tkPromptVisible) return;
+      tkPromptVisible = false;
+      if (tkPrompt) tkPrompt.classList.remove("visible");
+      stopTkPromptTracking();
+    }
+
+    function refreshUiPositions() {
+      positionTkPrompt();
+      positionBotPrompt();
+    }
+
+    window.addEventListener("load", () => {
+      refreshUiPositions();
+      startTkPromptTracking();
+    });
+    window.addEventListener("resize", refreshUiPositions);
+    window.addEventListener("scroll", refreshUiPositions);
+
+    function handleSpeak(fromSphere) {
+      if (tkPromptVisible) {
+        hideTkPrompt();
       }
 
-      let idx = 1;
-      for (let i = 1; i <= 5; i++) {
-        if (body.classList.contains("state-" + i)) {
-          idx = i;
-          break;
-        }
-      }
+      let idx = getCurrentStateIndex();
 
       const text = tkDialog[idx];
       const audioSrc = tkAudioMap[idx];
       if (!text || !audioSrc) return;
 
-      // Posicionar burbuja centrada sobre el pecho del androide
       const rect = bot.getBoundingClientRect();
       const bubbleX = rect.left + rect.width / 2;
       const bubbleY = rect.top + rect.height * 0.35;
@@ -833,7 +987,6 @@
 
       tkBubble.classList.add("visible");
 
-      // Ocultar burbuja a los 5 segundos
       if (bubbleHideTimeout) {
         clearTimeout(bubbleHideTimeout);
       }
@@ -841,7 +994,6 @@
         tkBubble.classList.remove("visible");
       }, 5000);
 
-      // Reproducir audio de frase
       try {
         tkAudio.pause();
         tkAudio.currentTime = 0;
@@ -849,11 +1001,32 @@
         tkAudio.play();
       } catch (e) {}
 
-      // Escribir texto
       typeBubble(text);
+
+      if (fromSphere && idx >= 2 && idx <= 5) {
+        sectionSpoken[idx] = true;
+        hideBotPrompt();
+      }
+    }
+
+    bot.addEventListener("click", () => {
+      handleSpeak(false);
     });
 
-    // --------- MUSICA DE FONDO ---------
+    if (botSphere) {
+      botSphere.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        handleSpeak(true);
+      });
+    }
+
+    if (tkSphere) {
+      tkSphere.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        handleSpeak(true);
+      });
+    }
+
     const bgMusicEl = document.getElementById("bgMusic");
     bgMusicEl.volume = 0.4;
 
@@ -863,7 +1036,6 @@
       if (bgStarted) return;
       bgStarted = true;
       bgMusicEl.play().catch(err => {
-        console.log("Error intentando reproducir BG_MUSIC:", err);
         bgStarted = false;
       });
     }
@@ -878,8 +1050,6 @@
     window.addEventListener("click", startBgMusic);
     window.addEventListener("keydown", startBgMusic);
 
-    // --------- OBSERVER (texto, logos, ico, bookz, glitch títulos) ---------
-
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -891,8 +1061,9 @@
             }
             body.classList.add("state-" + idx);
 
-            // cada vez que cambiamos de sección, recalculamos dirección de la flecha
-            positionArrowAboveFirstBox();
+            refreshUiPositions();
+            setActiveDot(idx);
+            updateBotPrompt(idx);
 
             const p = entry.target.querySelector(".content p");
             const icon = entry.target.querySelector(".section-icon");
