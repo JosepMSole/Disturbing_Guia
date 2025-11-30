@@ -398,7 +398,7 @@
 
     .scroll-indicator {
       position: fixed;
-      top: 12px;
+      top: 16px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 6;
@@ -407,7 +407,7 @@
       align-items: center;
       justify-content: center;
       pointer-events: none;
-      gap: 8px;
+      gap: 10px;
       width: 100%;
       max-width: 900px;
       padding: 0 16px;
@@ -483,13 +483,14 @@
 
     .scroll-dot {
       position: relative;
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       border: none;
       background: rgba(255,255,255,0.4);
       box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
       cursor: pointer;
+      pointer-events: auto;
       transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
       display: flex;
       align-items: center;
@@ -678,7 +679,7 @@
       body.state-3 .bot,
       body.state-4 .bot,
       body.state-5 .bot {
-        left: 0;
+        left: 5%;
         bottom: -10px;
         top: auto;
         --botScale: 1;
@@ -703,34 +704,48 @@
       }
 
       .scroll-indicator {
-        top: 6px;
+        top: 8px;
+        width: 100%;
         max-width: 480px;
-        padding: 0 10px;
+        padding: 0 0.75rem;
+        justify-content: flex-start;
+        gap: 6px;
       }
 
       .scroll-dots {
         width: 100%;
-        max-width: 320px;
+        max-width: 360px;
         justify-content: space-between;
         gap: 4px;
       }
 
       .scroll-dot {
-        width: 22px;
-        height: 22px;
+        width: 26px;
+        height: 26px;
       }
 
       .scroll-dot::before {
-        font-size: 10px;
+        font-size: 12px;
       }
 
       .volume-wrapper {
-        min-width: 140px;
-        max-width: 90%;
+        min-width: 120px;
+        max-width: 80%;
       }
 
       #volumeSlider {
-        height: 6px;
+        height: 8px;
+      }
+
+      #volumeSlider::-webkit-slider-thumb {
+        width: 18px;
+        height: 18px;
+        margin-top: -6px;
+      }
+
+      #volumeSlider::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
       }
     }
 
