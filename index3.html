@@ -91,6 +91,10 @@
       position: relative;
     }
 
+    .title-line {
+      display: inline;
+    }
+
     .content p {
       font-size: 1.02rem;
       opacity: 0.9;
@@ -641,9 +645,13 @@
         max-width: 100%;
       }
 
+      .title-line {
+        display: block;
+      }
+
       .bot {
-        width: 260px;
-        max-width: 65vw;
+        width: 130px;
+        max-width: none;
       }
 
       body.state-1 .bot,
@@ -651,8 +659,9 @@
       body.state-3 .bot,
       body.state-4 .bot,
       body.state-5 .bot {
-        left: 50%;
-        top: 78%;
+        left: 0;
+        bottom: -10px;
+        top: auto;
         --botScale: 1;
       }
 
@@ -675,21 +684,25 @@
       }
 
       .scroll-indicator {
-        top: 10px;
-        gap: 18px;
+        top: 8px;
+        gap: 8px;
+        width: 100%;
+        padding: 0 0.75rem;
+        justify-content: space-between;
       }
 
       .scroll-dot {
-        width: 60px;
-        height: 60px;
+        width: 44px;
+        height: 44px;
       }
 
       .scroll-dot::before {
-        font-size: 20px;
+        font-size: 16px;
       }
 
       .volume-wrapper {
-        min-width: 150px;
+        min-width: 120px;
+        max-width: 35%;
       }
 
       #volumeSlider {
@@ -711,9 +724,6 @@
     @media (max-width: 480px) {
       .content {
         padding: 1rem 0;
-      }
-      .bot {
-        width: 230px;
       }
     }
 
@@ -751,7 +761,10 @@
 
     <section class="section">
       <div class="content">
-        <h1>300 RELATOS, 20 LIBROS</h1>
+        <h1>
+          <span class="title-line">300 RELATOS,</span>
+          <span class="title-line">20 LIBROS</span>
+        </h1>
         <p>
           Sus 300 relatos, repartidos en 20 libros, exploran sucesos inexplicables, criaturas ocultas
           y fenómenos que desafían toda lógica humana.
@@ -796,7 +809,10 @@
 
     <section class="section">
       <div class="content">
-        <h1>LAS STORIES COBRAN VIDA</h1>
+        <h1>
+          <span class="title-line">LAS STORIES</span>
+          <span class="title-line">COBRAN VIDA</span>
+        </h1>
         <p>
           Algunos relatos cobran vida a través de audios y cortometrajes accesibles con códigos QR,
           haciendo que la experiencia traspase la pantalla.
@@ -813,7 +829,11 @@
 
     <section class="section">
       <div class="content">
-        <h1>AQUÍ COMIENZA TU VIAJE</h1>
+        <h1>
+          <span class="title-line">AQUÍ</span>
+          <span class="title-line">COMIENZA</span>
+          <span class="title-line">TU VIAJE</span>
+        </h1>
         <p>
           Si buscas misterio, sorpresa y relatos que te acompañen incluso después de cerrar la página,
           aquí comienza tu viaje.
