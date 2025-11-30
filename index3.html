@@ -56,10 +56,17 @@
       z-index: 2;
     }
 
+    .sections-wrapper {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
+    }
+
     .section {
       position: relative;
       min-height: 100vh;
-      height: auto;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -375,7 +382,6 @@
       font-size: 0.75rem;
       opacity: 0.7;
       padding: 0.75rem 1rem 1.5rem;
-      margin-top: -1rem;
       z-index: 3;
       position: relative;
     }
@@ -709,12 +715,12 @@
       }
 
       .scroll-dot {
-        width: 38px;
-        height: 38px;
+        width: 26px;
+        height: 26px;
       }
 
       .scroll-dot::before {
-        font-size: 14px;
+        font-size: 12px;
       }
 
       .volume-wrapper {
@@ -762,108 +768,110 @@
 
   <div class="page-content">
 
-    <section class="section">
-      <div class="content">
-        <img
-          src="ASSETS/LOGO_COLECCION_1.png"
-          alt="Disturbing Stories Logo"
-          class="logo-main"
-        >
-        <p>
-          Disturbing Stories es la puerta de entrada a un universo donde el terror y la ciencia ficción
-          se entrelazan para mostrar aquello que habita entre las grietas de lo real.
-        </p>
-      </div>
-    </section>
+    <div class="sections-wrapper">
+      <section class="section">
+        <div class="content">
+          <img
+            src="ASSETS/LOGO_COLECCION_1.png"
+            alt="Disturbing Stories Logo"
+            class="logo-main"
+          >
+          <p>
+            Disturbing Stories es la puerta de entrada a un universo donde el terror y la ciencia ficción
+            se entrelazan para mostrar aquello que habita entre las grietas de lo real.
+          </p>
+        </div>
+      </section>
 
-    <section class="section">
-      <div class="content">
-        <h1>
-          <span class="title-line">300 RELATOS,</span>
-          <span class="title-line">20 LIBROS</span>
-        </h1>
-        <p>
-          Sus 300 relatos, repartidos en 20 libros, exploran sucesos inexplicables, criaturas ocultas
-          y fenómenos que desafían toda lógica humana.
-        </p>
+      <section class="section">
+        <div class="content">
+          <h1>
+            <span class="title-line">300 RELATOS,</span>
+            <span class="title-line">20 LIBROS</span>
+          </h1>
+          <p>
+            Sus 300 relatos, repartidos en 20 libros, exploran sucesos inexplicables, criaturas ocultas
+            y fenómenos que desafían toda lógica humana.
+          </p>
+          <a
+            href="https://www.disturbingstories.com/store.html#tapablanda"
+            class="bookz-link"
+            target="_top"
+          >
+            <img
+              src="ASSETS/BOOKZ.png"
+              alt="Libros Disturbing Stories"
+              class="bookz"
+            >
+          </a>
+        </div>
         <a
-          href="https://www.disturbingstories.com/store.html#tapablanda"
-          class="bookz-link"
+          class="section-icon icon-pos-right"
+          href="https://www.disturbingstories.com/stories.html"
           target="_top"
         >
-          <img
-            src="ASSETS/BOOKZ.png"
-            alt="Libros Disturbing Stories"
-            class="bookz"
-          >
+          <img src="ASSETS/ICO_STORIES.png" alt="Stories">
         </a>
-      </div>
-      <a
-        class="section-icon icon-pos-right"
-        href="https://www.disturbingstories.com/stories.html"
-        target="_top"
-      >
-        <img src="ASSETS/ICO_STORIES.png" alt="Stories">
-      </a>
-    </section>
+      </section>
 
-    <section class="section">
-      <div class="content">
-        <h1>¡LEED, MALDIT@S!</h1>
-        <p>
-          Puedes leer gratis una parte de este mundo aquí en la web, pero las historias más perturbadoras
-          solo viven en los libros.
-        </p>
-      </div>
-      <a
-        class="section-icon icon-pos-left"
-        href="https://www.disturbingstories.com/store.html"
-        target="_top"
-      >
-        <img src="ASSETS/ICO_STORE.png" alt="Store">
-      </a>
-    </section>
+      <section class="section">
+        <div class="content">
+          <h1>¡LEED, MALDIT@S!</h1>
+          <p>
+            Puedes leer gratis una parte de este mundo aquí en la web, pero las historias más perturbadoras
+            solo viven en los libros.
+          </p>
+        </div>
+        <a
+          class="section-icon icon-pos-left"
+          href="https://www.disturbingstories.com/store.html"
+          target="_top"
+        >
+          <img src="ASSETS/ICO_STORE.png" alt="Store">
+        </a>
+      </section>
 
-    <section class="section">
-      <div class="content">
-        <h1>
-          <span class="title-line">LAS STORIES</span>
-          <span class="title-line">COBRAN VIDA</span>
-        </h1>
-        <p>
-          Algunos relatos cobran vida a través de audios y cortometrajes accesibles con códigos QR,
-          haciendo que la experiencia traspase la pantalla.
-        </p>
-      </div>
-      <a
-        class="section-icon icon-pos-right"
-        href="https://www.disturbingstories.com/media.html"
-        target="_top"
-      >
-        <img src="ASSETS/ICO_MEDIA.png" alt="Media">
-      </a>
-    </section>
+      <section class="section">
+        <div class="content">
+          <h1>
+            <span class="title-line">LAS STORIES</span>
+            <span class="title-line">COBRAN VIDA</span>
+          </h1>
+          <p>
+            Algunos relatos cobran vida a través de audios y cortometrajes accesibles con códigos QR,
+            haciendo que la experiencia traspase la pantalla.
+          </p>
+        </div>
+        <a
+          class="section-icon icon-pos-right"
+          href="https://www.disturbingstories.com/media.html"
+          target="_top"
+        >
+          <img src="ASSETS/ICO_MEDIA.png" alt="Media">
+        </a>
+      </section>
 
-    <section class="section">
-      <div class="content">
-        <h1>
-          <span class="title-line">AQUÍ</span>
-          <span class="title-line">COMIENZA</span>
-          <span class="title-line">TU VIAJE</span>
-        </h1>
-        <p>
-          Si buscas misterio, sorpresa y relatos que te acompañen incluso después de cerrar la página,
-          aquí comienza tu viaje.
-        </p>
-      </div>
-      <a
-        class="section-icon icon-pos-center-bottom"
-        href="https://www.disturbingstories.com/random.html"
-        target="_top"
-      >
-        <img src="ASSETS/ICO_RANDOM.png" alt="Random">
-      </a>
-    </section>
+      <section class="section">
+        <div class="content">
+          <h1>
+            <span class="title-line">AQUÍ</span>
+            <span class="title-line">COMIENZA</span>
+            <span class="title-line">TU VIAJE</span>
+          </h1>
+          <p>
+            Si buscas misterio, sorpresa y relatos que te acompañen incluso después de cerrar la página,
+            aquí comienza tu viaje.
+          </p>
+        </div>
+        <a
+          class="section-icon icon-pos-center-bottom"
+          href="https://www.disturbingstories.com/random.html"
+          target="_top"
+        >
+          <img src="ASSETS/ICO_RANDOM.png" alt="Random">
+        </a>
+      </section>
+    </div>
 
     <video class="bot" autoplay muted loop playsinline>
       <source src="ASSETS/TK__Loop1.webm" type="video/webm">
@@ -906,6 +914,7 @@
 
   <script>
     const sections = document.querySelectorAll(".section");
+    const sectionsWrapper = document.querySelector(".sections-wrapper");
     const body = document.body;
 
     const paragraphs = document.querySelectorAll(".content p");
@@ -956,9 +965,8 @@
       updateBotPrompt(idx);
       refreshUiPositions();
 
-      const target = sections[idx - 1];
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+      if (sectionsWrapper) {
+        sectionsWrapper.style.transform = "translateY(-" + (idx - 1) * 100 + "vh)";
       }
     }
 
