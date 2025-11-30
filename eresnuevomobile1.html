@@ -19,7 +19,6 @@
     }
 
     body {
-      /* importante: NO bloquear el scroll en el embed */
       min-height: 100vh;
     }
 
@@ -52,7 +51,6 @@
       position: relative;
     }
 
-    /* pequeño efecto glitch suave */
     .hero-title::before,
     .hero-title::after {
       content: attr(data-text);
@@ -102,50 +100,32 @@
 
     .primary-btn,
     .secondary-btn {
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .primary-btn {
+      background: #000000;              /* negro sólido */
+      color: #ffffff;                   /* texto blanco */
+      border: 1px solid rgba(255,255,255,0.22);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 14px 18px;
       border-radius: 999px;
-      border: none;
       font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      cursor: pointer;
       width: 100%;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-      outline: none;
-    }
-
-    .primary-btn {
-      background: radial-gradient(circle at top left, #00f5ff 0%, #00c3ff 27%, #0066ff 68%, #4400ff 100%);
-      box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.7),
-        0 0 18px rgba(0, 255, 255, 0.4);
-      color: #020212;
-      text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.26);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
     }
 
     .primary-btn:active {
       transform: scale(0.96) translateY(1px);
-      box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.85),
-        0 0 10px rgba(0, 255, 255, 0.35);
-    }
-
-    .secondary-btn {
-      margin-top: 10px;
-      background: rgba(5, 8, 22, 0.8);
-      border: 1px solid rgba(0, 255, 255, 0.3);
-      color: rgba(240, 248, 255, 0.9);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.75);
-    }
-
-    .secondary-btn:active {
-      transform: scale(0.97) translateY(1px);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.9);
     }
 
     .bot-section {
@@ -162,7 +142,7 @@
       aspect-ratio: 3 / 4;
       border-radius: 20px;
       overflow: hidden;
-      position: relative;
+      position: relative; /* importante para centrar el botón "Habla" */
       margin: 0 auto;
       box-shadow:
         0 18px 35px rgba(0, 0, 0, 0.9),
@@ -198,6 +178,34 @@
       border-radius: inherit;
       box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.9);
       pointer-events: none;
+    }
+
+    /* Esfera "Habla" centrada en el bot */
+    .secondary-btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.85);
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 0 18px rgba(0,255,255,0.25),
+        0 8px 20px rgba(0,0,0,0.8);
+      z-index: 5;
+    }
+
+    .secondary-btn:active {
+      transform: translate(-50%, -50%) scale(0.94);
     }
 
     .tk-bubble {
@@ -249,7 +257,6 @@
       margin: 0;
     }
 
-    /* Pequeño ajuste general para pantallas muy pequeñas */
     @media (max-width: 360px) {
       .hero-title {
         font-size: 1.7rem;
@@ -260,7 +267,6 @@
       }
     }
 
-    /* En caso de iOS (por mezcla de colores), podremos hacer tweaks si queremos */
     body.ios .bot-video-wrapper::before {
       opacity: 0.6;
     }
@@ -290,14 +296,14 @@
           preload="auto"
         >
           <source src="ASSETS/TK__Loop1.webm" type="video/webm" />
-          <!-- Fallback simple -->
           Tu navegador no soporta vídeo en HTML5.
         </video>
-      </div>
 
-      <button id="speakBtn" class="secondary-btn" type="button">
-        Habla con T.K.
-      </button>
+        <!-- Esfera centrada con la palabra "Habla" -->
+        <button id="speakBtn" class="secondary-btn" type="button">
+          Habla
+        </button>
+      </div>
 
       <div id="tkBubble" class="tk-bubble" aria-live="polite">
         <p id="tkBubbleText"></p>
@@ -306,7 +312,6 @@
   </div>
 
   <script>
-    // Detectar iOS para pequeños ajustes visuales
     (function detectIOS() {
       try {
         const ua = window.navigator.userAgent || "";
@@ -326,11 +331,9 @@
     const tkBubbleText = document.getElementById("tkBubbleText");
     const startGuideBtn = document.getElementById("startGuideBtn");
 
-    // Diálogo simple de T.K.
     const tkText =
       "¡Hola! Soy T.K. Si es tu primera vez aquí, te recomiendo ver la Guía de Inicio para entender qué es Disturbing Stories y por dónde empezar.";
 
-    // Audio asociado
     const tkAudio = new Audio("ASSETS/TK_Frase1.mp3");
 
     let typingTimeouts = [];
@@ -351,7 +354,7 @@
       tkBubble.classList.add("visible");
       tkBubbleText.textContent = "";
 
-      const totalDuration = 1800; // ms
+      const totalDuration = 1800;
       const length = text.length || 1;
       const delay = totalDuration / length;
       let i = 0;
@@ -366,35 +369,26 @@
 
       step();
 
-      // Ocultar la burbuja tras unos segundos
       hideBubbleTimeout = setTimeout(() => {
         tkBubble.classList.remove("visible");
       }, 6000);
     }
 
     function speak() {
-      // Audio
       try {
         tkAudio.pause();
         tkAudio.currentTime = 0;
-        tkAudio.play().catch(() => {
-          /* a veces el autoplay no está permitido hasta interacción previa */
-        });
-      } catch (e) {
-        /* silencio */
-      }
+        tkAudio.play().catch(() => {});
+      } catch (e) {}
 
-      // Texto animado
       showBubbleText(tkText);
     }
 
     speakBtn.addEventListener("click", speak);
 
-    // También podemos hacer que tocar el vídeo active el mensaje
     const botVideoWrapper = document.querySelector(".bot-video-wrapper");
     botVideoWrapper.addEventListener("click", speak);
 
-    // Botón principal: abrir Guía de Inicio
     startGuideBtn.addEventListener("click", () => {
       const url = "https://www.disturbingstories.com/guia.html";
       try {
